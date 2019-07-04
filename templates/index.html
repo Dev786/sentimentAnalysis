@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+    <div class="jumbotron">
+        <div class="containers">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Input Text</a></li>
+                <!-- <li><a data-toggle="tab" href="#menu1">File</a></li> -->
+            </ul>
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <h3>Text Input</h3>
+                    <div>
+                        <form action="http://127.0.0.1:5000/sentiments" method="POST">
+                            <input type="text" name="sentimentText">
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <div>
+                        <form action="http://127.0.0.1:5000/sentiments_file" method="POST"
+                            enctype="multipart/form-data">
+                            <input type="file" name="sentimentFile">
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+                {% if length > 0 %}
+                <div class="container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Text</th>
+                                <th>Sentiment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in data %}
+                            <tr>
+                                <td>{{d[0]}}</td>
+                                <td>{{d[1]}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
